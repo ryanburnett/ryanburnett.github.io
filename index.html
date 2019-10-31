@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My Awesome Presentation</title>
+    <title>AWS</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style type="text/css">
       @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
@@ -19,7 +19,7 @@
       	font-family: 'Ubuntu Mono';
       }
       .large {
-      	font-size: 80px;
+      	font-size: 100px;
       }
     </style>
   </head>
@@ -33,6 +33,8 @@ class: center, middle
 Ryan Burnett
 
 .large[👨🏻‍💻]
+
+![Alt text](https://s3.amazonaws.com/ryanburnett.com/img/aws/aws-certified.png)
 
 ???
 
@@ -64,7 +66,19 @@ background-image: url(https://s.w.org/style/images/about/WordPress-logotype-wmar
 
 ---
 
-Who hosts WordPress?
+# WordPress
+
+- Most popular content management system
+- Open source and free to use
+- Used in one quarter of all websites
+- Customizable through themes and plugins
+- Active development community
+
+---
+
+# How do I get a site on WordPress?
+
+https://wordpress.org/hosting/
 
 ---
 
@@ -92,22 +106,261 @@ https://www.siteground.com/wordpress-hosting.htm
 
 ---
 
+# Details
+
+- Limited disk space
+- Limited data transfer
+- No load balancing
+- No auto scaling
+- No CDN
+
+---
+
+# What's missing?
+
+- Availability
+- Scalability
+- Security
+
+---
+
+# Another option?
+
+---
+
+![Alt text](https://s3.amazonaws.com/ryanburnett.com/img/aws/aws.png)
+
+---
+
+# Benefits
+
+- Pay-as-you-go pricing
+- No upfront commitments
+- Provision new resources in minutes
+- Elasticity
+- Reliability
+- Security
+- Reliability
+- Global reach
+
+---
+
+# Services
+
+- Virtual Private Cloud (VPC)
+- Elastic Compute Cloud (EC2)
+- Relational Database Service (RDS)
+- Simple Storage Service (S3)
+- Elastic File System (EFS)
+- Auto Scaling
+- CloudWatch
+- CloudFront
+- Internet Gateway
+
+---
+
+# Shared Responsibility Model
+
+![Alt text](https://s3.amazonaws.com/ryanburnett.com/img/aws/shared-responsibility-model.jpg)
+
+---
+
+# Hosting WordPress on AWS
+
+https://github.com/aws-samples/aws-refarch-wordpress
+
+![Alt text](https://s3.amazonaws.com/ryanburnett.com/img/aws/wordpress-architecture.jpg)
+
+---
+
+# AWS Resources Created
+
+- Amazon Virtual Private Cloud (Amazon VPC)
+- Internet Gateway (IGW)
+- NAT Gateway (across all public subnets)
+- Amazon VPC subnets (public, private (data, web)) in all the Availability Zones (AZs) selected
+- Routing tables for public subnets - routing through IGW
+- Routing tables for private subnets - routing through NAT Gateway
+- Mulitple VPC Security Groups
+- Bastion Auto Scaling Group (launching no instances) - in public subnets (public)
+- Amazon Relational Database Service (Amazon RDS) Aurora cluster - in private subnets (data)
+- Amazon Elastic File System (Amazon EFS) file system - with mount targets in private subnets (data) w/ optional dummy data to grow the file system to achieve higher levels of throughput and IOPS
+- File System Auto Scaling Group (launching 1 instance) - to add dummy data (it auto terminates by setting ASG desired count to 0)
+
+---
+
+# AWS Resources Created continued...
+
+- File System Auto Scaling Group (launching 1 instance) - to dynamically adjust warning and critical threshold values when the permitted throughput value changes (it auto terminates by setting ASG desired count to 0)
+- Amazon CloudWatch alarms to monitor Amazon EFS burst credit balance
+- Amazon ElastiCache cache cluster (optional) - in private subnets (data)
+- Amazon Elastic Load Balancing (Amazon ELB) Application Load Balancer (ALB) - in public subnets (public)
+- Web Auto Scaling Group (launching 2 instances) - in private subnets (web)
+- Amazon CloudFront distribution (optional)
+- Amazon Route53 DNS record set (optional)
+- Amazon CloudWatch dashboard
+
+---
+
+# Pricing
+
+- Different services have different pricing models
+- AWS Cost Explorer
+- AWS Budgets
+- AWS Cost Management
+
+---
+
+# A Simpler Option
+
+---
+
+.center[![Center-aligned image](https://s3.amazonaws.com/ryanburnett.com/img/aws/lightsail.png)]
+
+---
+
+# Amazon Lightsail
+
+The easiest way to get started on AWS
+
+![Alt text](https://s3.amazonaws.com/ryanburnett.com/img/aws/lightsail-robot.png)
+
+---
+
+# Plans starting at $3.50 per month
+
+Lightsail is an easy-to-use cloud platform that offers you everything needed to build an application or website, plus a cost-effective, monthly plan. Whether you’re new to the cloud or looking to get on the cloud quickly with AWS infrastructure you trust, we’ve got you covered.
+
+---
+
+# Use Amazon Lightsail for
+
+Lightsail is ideal for simpler workloads, quick deployments, and getting started on AWS. It’s designed to help you start small, and then scale as you grow. 
+
+Simple web applications
+.left[![Center-aligned image](https://d1.awsstatic.com/Products/product-name/Lightsail/Homepage/Page-Illo-Lightsail_Simple-Web-Apps.07950e7154b648042053fd79fc18128d957da41b.png)]
+
+Websites
+.left[![Center-aligned image](https://d1.awsstatic.com/Products/product-name/Lightsail/Homepage/Page-Illo-Lightsail_Application-Hosting.b747fb4039bc68f96e43b5586727e6dbd1d633ac.png)]
+
+---
+
+# Use Amazon Lightsail for
+
+Lightsail is ideal for simpler workloads, quick deployments, and getting started on AWS. It’s designed to help you start small, and then scale as you grow. 
+
+Business Software
+.left[![Center-aligned image](https://d1.awsstatic.com/Products/product-name/Lightsail/Homepage/Page-Illo-Lightsail_Single-Server-Email.b1641671955b75537a0b11cefc3031339613887b.png)]
+
+Dev/test environments
+.left[![Center-aligned image](https://d1.awsstatic.com/Products/product-name/Lightsail/Homepage/Page-Illo-Lightsail_Dev-Test.e72d31124b630185cf9c575971a3f6683f90ba6a.png)]
+
+---
+
 # Features
 
-Bluehost
+- Lightsail virtual servers
+- Simplified load balancing
+- Managed databases
+- Upgrade to EC2
+- Access to AWS services
 
-Choice Plus
+---
 
-Resources shared on a single server with other customers in a non-dedicated environment
-Limited disk space
-Limited data transfer
-No auto-scaling
-No CDN
-No monitoring
+#Operating Systems
 
-SiteGround
+.left[![Center-aligned image](https://d1.awsstatic.com/products/Lightsail/amazon-linux-small.cad8db4f5a958a4d8123a0f04fb43202c14fe157.png)]
+Amazon Linux
 
-30 GB Web Space
+.left[![Center-aligned image](https://d1.awsstatic.com/products/Lightsail/ubuntu-small.6ab2bec1b196a0582b2ce32427eb49c15fbd23ee.png)]
+Ubuntu
+
+.left[![Center-aligned image](https://d1.awsstatic.com/products/Lightsail/debian-small.d6f74118efe76274c04120137d35a8f634c62da0.png)]
+Debian
+
+---
+
+#Operating Systems
+
+.left[![Center-aligned image](https://d1.awsstatic.com/products/Lightsail/freebsd-small.539199feb6d25ddb02cba3648008350770be20d1.jpg)]
+FreeBSD
+
+.left[![Center-aligned image](https://d1.awsstatic.com/products/Lightsail/opensuse-small.8b23d79a5a366878787df88a7a3670fb0a6b5f39.png)]
+OpenSUSE
+
+.left[![Center-aligned image](https://d1.awsstatic.com/products/Lightsail/windows-server-small.05ecddfa35bbd9380852a4b7c59cbf0ef2c0a15e.png)]
+Windows Server
+
+---
+
+# Applications
+
+.left[![Center-aligned image](https://d1.awsstatic.com/products/Lightsail/wordpress-small.3a87e6d98479f9ec291de21bf9f03d71a82cccfc.png)]
+WordPress
+
+.left[![Center-aligned image](https://d1.awsstatic.com/products/Lightsail/magento-small.6dcc8c9df29dc6847eb8c5fd39fc810f18be95f0.png)]
+Magneto
+
+.left[![Center-aligned image](https://d1.awsstatic.com/products/Lightsail/drupal-small.81172bf58299219982caa6b5782e8c20e21edf22.png)]
+Drupal
+
+---
+
+# Applications
+
+.left[![Center-aligned image](https://d1.awsstatic.com/products/Lightsail/joomla-small.e421ef239ce517959041f4762cfa986707c4b632.png)]
+Joomla!
+
+.left[![Center-aligned image](https://d1.awsstatic.com/products/Lightsail/redmine-small.4f82bd9963d9b7c0ee5b11a6ae6960055d8c405f.png)]
+Redmine
+
+.left[![Center-aligned image](https://d1.awsstatic.com/products/Lightsail/plesk-small.172619acffabc81254e9fa50e2d32281ec86f5f4.png)]
+Plesk
+
+---
+
+# Stacks
+
+.left[![Center-aligned image](https://d1.awsstatic.com/products/Lightsail/node-js-small.e385a79403cabff63f36f8dcb1334eb78829a8d6.png)]
+Node.js
+
+.left[![Center-aligned image](https://d1.awsstatic.com/products/Lightsail/gitlab-small.a2765b367bad76e2ecc5679cbb26872a6e3cc0c5.png)]
+GitLab
+
+.left[![Center-aligned image](https://d1.awsstatic.com/products/Lightsail/lamp-small.6b4a1ce65995093fba3ab35b38024ed66f92daa5.png)]
+LAMP
+
+---
+
+# Stacks
+
+.left[![Center-aligned image](https://d1.awsstatic.com/products/Lightsail/mean-small.f2a8ffaa98c3455d05f9a38895c8c2c24acd1417.png)]
+MEAN
+
+
+.left[![Center-aligned image](https://d1.awsstatic.com/products/Lightsail/nginx-small.3bf0be3757f5f72b4bbfca67db63d16a81594c15.png)]
+Nginx
+
+---
+
+# Lightsail
+
+- Several software options to choose from
+- Fixed, predictable pricing
+- Backed by the power of AWS
+
+---
+
+# Demo
+
+
+
+--- 
+
+
+
+
+
 
 
 
@@ -134,6 +387,8 @@ Contact
 Code library
 
 Visit [Apple](https://apple.com)
+
+![Alt text](https://s3.amazonaws.com/ryanburnett.com/img/aws/aws.png)
 
 .center[![Center-aligned image]()]
 
