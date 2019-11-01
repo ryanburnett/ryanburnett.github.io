@@ -43,17 +43,25 @@ Notes for the _first_ slide!
 
 # The White House
 
+.left[![Left-aligned image](https://s3.amazonaws.com/ryanburnett.com/img/aws/wp-white-house.png)]
+
 ---
 
 # The Chicago Sun Times
+
+.left[![Left-aligned image](https://s3.amazonaws.com/ryanburnett.com/img/aws/wp-cst.png)]
 
 ---
 
 # The New York Times Company
 
+.left[![Left-aligned image](https://s3.amazonaws.com/ryanburnett.com/img/aws/wp-nyt.png)]
+
 ---
 
 # The Walt Disney Company
+
+.left[![Left-aligned image](https://s3.amazonaws.com/ryanburnett.com/img/aws/wp-disney.png)]
 
 ---
 
@@ -127,7 +135,7 @@ https://www.siteground.com/wordpress-hosting.htm
 
 ---
 
-![Alt text](https://s3.amazonaws.com/ryanburnett.com/img/aws/aws.png)
+background-image: url(https://s3.amazonaws.com/ryanburnett.com/img/aws/aws.png)
 
 ---
 
@@ -180,7 +188,7 @@ https://github.com/aws-samples/aws-refarch-wordpress
 - Amazon VPC subnets (public, private (data, web)) in all the Availability Zones (AZs) selected
 - Routing tables for public subnets - routing through IGW
 - Routing tables for private subnets - routing through NAT Gateway
-- Mulitple VPC Security Groups
+- Multiple VPC Security Groups
 - Bastion Auto Scaling Group (launching no instances) - in public subnets (public)
 - Amazon Relational Database Service (Amazon RDS) Aurora cluster - in private subnets (data)
 - Amazon Elastic File System (Amazon EFS) file system - with mount targets in private subnets (data) w/ optional dummy data to grow the file system to achieve higher levels of throughput and IOPS
@@ -203,7 +211,7 @@ https://github.com/aws-samples/aws-refarch-wordpress
 
 # Pricing
 
-- Different services have different pricing models
+- Different services have different pricing models with variable costs
 - AWS Cost Explorer
 - AWS Budgets
 - AWS Cost Management
@@ -279,7 +287,7 @@ Debian
 
 ---
 
-#Operating Systems
+#Operating Systems continued...
 
 .left[![Center-aligned image](https://d1.awsstatic.com/products/Lightsail/freebsd-small.539199feb6d25ddb02cba3648008350770be20d1.jpg)]
 FreeBSD
@@ -305,7 +313,7 @@ Drupal
 
 ---
 
-# Applications
+# Applications continued...
 
 .left[![Center-aligned image](https://d1.awsstatic.com/products/Lightsail/joomla-small.e421ef239ce517959041f4762cfa986707c4b632.png)]
 Joomla!
@@ -331,7 +339,7 @@ LAMP
 
 ---
 
-# Stacks
+# Stacks continued...
 
 .left[![Center-aligned image](https://d1.awsstatic.com/products/Lightsail/mean-small.f2a8ffaa98c3455d05f9a38895c8c2c24acd1417.png)]
 MEAN
@@ -352,7 +360,6 @@ Nginx
 
 # Demo
 
-
 ---
 
 # Create a WordPress instance
@@ -363,30 +370,40 @@ https://lightsail.aws.amazon.com/ls/webapp/home/instances
 
 # Create instance
 
----
-
-# Pick your...
-
-- Region
-- Instance image
-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Platform (Linux/Unix)
-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Blueprint (WordPress)
+![Alt text](https://s3.amazonaws.com/ryanburnett.com/img/aws/create-instance.png)
 
 ---
 
-# Choose your instance plan
+# Pick the Instance Location
+
+![Alt text](https://s3.amazonaws.com/ryanburnett.com/img/aws/instance-location.png)
 
 ---
 
-# Identify your instance
+# Pick the Instance Image
+
+- Platform (Linux/Unix)
+- Blueprint (WordPress)
+
+![Alt text](https://s3.amazonaws.com/ryanburnett.com/img/aws/instance-image.png)
 
 ---
 
-# Create instance
+# Choose Your Instance Plan
+
+![Alt text](https://s3.amazonaws.com/ryanburnett.com/img/aws/instance-plan.png)
 
 ---
 
-# Select your instance
+# Identify & Create Your Instance
+
+![Alt text](https://s3.amazonaws.com/ryanburnett.com/img/aws/identify-instance.png)
+
+---
+
+# Select Your Instance
+
+![Alt text](https://s3.amazonaws.com/ryanburnett.com/img/aws/select-instance.png)
 
 ---
 
@@ -399,96 +416,70 @@ https://lightsail.aws.amazon.com/ls/webapp/home/instances
 
 ---
 
+![Alt text](https://s3.amazonaws.com/ryanburnett.com/img/aws/networking.png)
+
+---
+
 # Connect tab
 - Connect using SSH
+
+![Alt text](https://s3.amazonaws.com/ryanburnett.com/img/aws/ssh.png)
 
 ---
 
 # Get the password
 
 - ls
-- bitnami_application_password
-- Copy the password using the clipboard icon
+- cat bitnami_application_password
+- Highlight the password
+- Copy it
+- Click the clipboard icon in the bottom right
+- Copy it
 
 ---
 
-#
+![Alt text](https://s3.amazonaws.com/ryanburnett.com/img/aws/password.png)
 
 ---
 
-#
+# Login window
+- *Username*: user
+- *Password*: paste the password
+- Click the "Log In" button
 
 ---
 
-#
+![Alt text](https://s3.amazonaws.com/ryanburnett.com/img/aws/welcome.png)
 
 ---
 
-#
+# Hello world
+- Click "New" > "Post"
+
+![Alt text](https://s3.amazonaws.com/ryanburnett.com/img/aws/new.png)
 
 ---
 
-#
+# Publish
+
+- Click the plus icon
+- Type "Hello world"
+- Click the "Publish" button twice
 
 ---
 
-#
+![Alt text](https://s3.amazonaws.com/ryanburnett.com/img/aws/publish.png)
 
 ---
 
-#
+# View the post
+- Go back to the main WordPress instance
+- Refresh
+- See the new post
 
 ---
 
-#
-
----
-
-#
-
----
-
-#
-
----
-
-#
-
----
-
-#
-
----
-
-#
-
----
-
-#
-
----
-
-#
-
----
-
-#
-
----
-
-#
-
----
-
-#
-
----
-
-#
-
----
-
-#
+![Alt text](https://s3.amazonaws.com/ryanburnett.com/img/aws/hello-world.png)
 
 ---
 
