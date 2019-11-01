@@ -158,7 +158,6 @@ background-image: url(https://s3.amazonaws.com/ryanburnett.com/img/aws/aws.png)
 - Auto Scaling
 - CloudWatch
 - CloudFront
-- Internet Gateway
 
 ---
 
@@ -481,7 +480,6 @@ https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-connect
 
 # Larger Instance Size
 - Go to the instance
-- Snapshots
 - Create new instance from snapshot
 - Choose a new instance plan
 - Create
@@ -495,6 +493,22 @@ https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-connect
 Crucial WordPress website data for posts, pages, and users, is stored on the MySQL database that is running on the instance in Amazon Lightsail. If the WordPress instance fails, your data may become unrecoverable. To avoid this scenario, you should transfer your website data to a MySQL managed database in Amazon Lightsail.
 
 https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-connect-wordpress-to-mysql-managed-database
+
+---
+
+# Creating a Snapshot of Your Linux or Unix Instance in Amazon Lightsail
+
+An instance snapshot is a copy of the system disk and matches the original machine configuration (memory, CPU, disk size, and data transfer rate).
+
+https://lightsail.aws.amazon.com/ls/docs/en_us/articles/lightsail-how-to-create-a-snapshot-of-your-instance
+
+---
+
+# Creating a Snapshot of Your Database in Amazon Lightsail
+
+A snapshot is a copy of your database that you can use to restore it if something goes wrong. You can also use a snapshot to create a new database using a different plan, such as a high availability or standard plan.
+
+https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-creating-a-database-snapshot
 
 ---
 
@@ -519,22 +533,6 @@ https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-connect
 Edit the WordPress configuration file so that your website connects to your MySQL managed database
 
 https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-connect-wordpress-to-mysql-managed-database#configure-wordpress-to-connect-to-mysql-managed-database
-
----
-
-# Creating a Snapshot of Your Linux or Unix Instance in Amazon Lightsail
-
-An instance snapshot is a copy of the system disk and matches the original machine configuration (memory, CPU, disk size, and data transfer rate).
-
-https://lightsail.aws.amazon.com/ls/docs/en_us/articles/lightsail-how-to-create-a-snapshot-of-your-instance
-
----
-
-# Creating a Snapshot of Your Database in Amazon Lightsail
-
-A snapshot is a copy of your database that you can use to restore it if something goes wrong. You can also use a snapshot to create a new database using a different plan, such as a high availability or standard plan.
-
-https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-creating-a-database-snapshot
 
 ---
 
