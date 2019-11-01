@@ -113,7 +113,6 @@ https://www.siteground.com/wordpress-hosting.htm
 
 # Details
 
-- Limited data transfer
 - No load balancing
 - No auto scaling
 - No CDN
@@ -149,7 +148,7 @@ background-image: url(https://s3.amazonaws.com/ryanburnett.com/img/aws/aws.png)
 ---
 
 # Services
-
+StaticIp-1
 - Virtual Private Cloud (VPC)
 - Elastic Compute Cloud (EC2)
 - Elastic File System (EFS)
@@ -605,15 +604,53 @@ https://lightsail.aws.amazon.com/ls/docs/en_us/articles/lightsail-how-to-set-up-
 
 # CloudFormation
 
-- AWS CloudFormation provides a common language for you to describe and provision all the infrastructure resources in your cloud environment.
-- CloudFormation allows you to use programming languages or a simple text file to model and provision, in an automated and secure manner, all the resources needed for your applications across all regions and accounts.
-- This gives you a single source of truth for your AWS resources.
+Model and provision all your cloud infrastructure resources.
 
 https://aws.amazon.com/cloudformation/
 
 ---
 
-# YAML Templates
+# Overview
+
+- AWS CloudFormation provides a common language for you to describe and provision all the infrastructure resources in your cloud environment.
+- CloudFormation allows you to use programming languages or a simple text file to model and provision, in an automated and secure manner, all the resources needed for your applications across all regions and accounts.
+- This gives you a single source of truth for your AWS resources.
+
+---
+
+# Model It All
+
+AWS CloudFormation allows you to model your entire infrastructure with either a text file or programming languages. This provides a single source of truth for your AWS resources and helps you to standardize infrastructure components used across your organization, enabling configuration compliance and faster troubleshooting.
+
+---
+
+# Automate and Deploy
+
+AWS CloudFormation provisions your resources in a safe, repeatable manner, allowing you to build and rebuild your infrastructure and applications, without having to perform manual actions or write custom scripts. CloudFormation takes care of determining the right operations to perform when managing your stack, and rolls back changes automatically if errors are detected.
+
+---
+
+# It's Just Code
+
+Codifying your infrastructure allows you to treat your infrastructure as just code. You can author it with any code editor, check it into a version control system, and review the files with team members before deploying into production.
+
+---
+
+# How It Works
+
+![How it works](https://s3.amazonaws.com/ryanburnett.com/img/aws/cf-how-it-works.png)
+
+---
+
+# Example: EC2 Instance in a Security Group
+
+Creates an Amazon EC2 instance in an Amazon EC2 security group.
+
+https://s3-us-west-2.amazonaws.com/cloudformation-templates-us-west-2/EC2InstanceWithSecurityGroupSample.template
+
+---
+
+# WordPress YAML Templates
 
 This reference architecture provides best practices and a set of YAML CloudFormation templates for deploying WordPress on AWS.
 
@@ -770,7 +807,29 @@ https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?
 
 # More Information
 
-https://github.com/aws-samples/aws-refarch-wordpress
+- https://aws.amazon.com/cloudformation/faqs/
+- https://aws.amazon.com/cloudformation/resources/templates/
+- https://github.com/aws-samples/aws-refarch-wordpress
+
+---
+
+# Summary
+
+---
+
+![Hello world](https://s3.amazonaws.com/ryanburnett.com/img/aws/hello-world.png)
+
+---
+
+.left[![The White House](https://s3.amazonaws.com/ryanburnett.com/img/aws/wp-white-house.png)]
+
+---
+
+background-image: url(https://s.w.org/style/images/about/WordPress-logotype-wmark.png)
+
+---
+
+background-image: url(https://s3.amazonaws.com/ryanburnett.com/img/aws/aws.png)
 
 ---
 
