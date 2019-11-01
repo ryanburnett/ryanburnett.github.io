@@ -73,7 +73,7 @@ background-image: url(https://s.w.org/style/images/about/WordPress-logotype-wmar
 
 - Most popular content management system
 - Open source and free to use
-- Used in 25% of all websites
+- Used in 27% of all websites
 - Easily customizable through themes and plugins
 - Active development community
 
@@ -161,59 +161,7 @@ background-image: url(https://s3.amazonaws.com/ryanburnett.com/img/aws/aws.png)
 
 ---
 
-# Shared Responsibility Model
-
-![Shared Responsibility Model](https://s3.amazonaws.com/ryanburnett.com/img/aws/shared-responsibility-model.jpg)
-
----
-
-# Hosting WordPress On AWS
-
-https://github.com/aws-samples/aws-refarch-wordpress
-
-![WordPress Reference Architecture](https://s3.amazonaws.com/ryanburnett.com/img/aws/wordpress-architecture.jpg)
-
----
-
-# AWS Resources Created
-
-- Amazon Virtual Private Cloud (Amazon VPC)
-- Internet Gateway (IGW)
-- NAT Gateway (across all public subnets)
-- Amazon VPC subnets (public, private (data, web)) in all the Availability Zones (AZs) selected
-- Routing tables for public subnets - routing through IGW
-- Routing tables for private subnets - routing through NAT Gateway
-- Multiple VPC Security Groups
-- Bastion Auto Scaling Group (launching no instances) - in public subnets (public)
-- Amazon Relational Database Service (Amazon RDS) Aurora cluster - in private subnets (data)
-- Amazon Elastic File System (Amazon EFS) file system - with mount targets in private subnets (data) w/ optional dummy data to grow the file system to achieve higher levels of throughput and IOPS
-- File System Auto Scaling Group (launching 1 instance) - to add dummy data (it auto terminates by setting ASG desired count to 0)
-
----
-
-# AWS Resources Created continued...
-
-- File System Auto Scaling Group (launching 1 instance) - to dynamically adjust warning and critical threshold values when the permitted throughput value changes (it auto terminates by setting ASG desired count to 0)
-- Amazon CloudWatch alarms to monitor Amazon EFS burst credit balance
-- Amazon ElastiCache cache cluster (optional) - in private subnets (data)
-- Amazon Elastic Load Balancing (Amazon ELB) Application Load Balancer (ALB) - in public subnets (public)
-- Web Auto Scaling Group (launching 2 instances) - in private subnets (web)
-- Amazon CloudFront distribution (optional)
-- Amazon Route53 DNS record set (optional)
-- Amazon CloudWatch dashboard
-
----
-
-# Pricing
-
-- Different services have different pricing models with variable costs
-- AWS Cost Explorer
-- AWS Budgets
-- AWS Cost Management
-
----
-
-# A Simpler Option
+# How Do I Get Started?
 
 ---
 
@@ -226,6 +174,8 @@ https://github.com/aws-samples/aws-refarch-wordpress
 ## The easiest way to get started on AWS
 
 .center[![Robot](https://s3.amazonaws.com/ryanburnett.com/img/aws/lightsail-robot.png)]
+
+https://aws.amazon.com/lightsail/
 
 ---
 
@@ -356,9 +306,13 @@ Nginx
 
 ---
 
-# Create a WordPress instance
+# Create a WordPress Instance
 
 https://lightsail.aws.amazon.com/ls/webapp/home/instances
+
+---
+
+# Sneak Preview While We Wait...
 
 ---
 
@@ -479,15 +433,34 @@ https://lightsail.aws.amazon.com/ls/webapp/home/instances
 
 ---
 
+# Demo
+
+https://lightsail.aws.amazon.com/ls/webapp/home/instances
+
+---
+
 # Additional Configuration
 
-- Create a Static IP and Attach It To An Instance In Amazon Lightsail
+- Creating a Static IP and Attach It To An Instance In Amazon Lightsail
 - Creating a DNS Zone to Manage Your Domain’s DNS Records
 - Connecting to Your Instance in Amazon Lightsail Using SFTP
 
 ---
 
-# Create a Static IP and Attach It To An Instance In Amazon Lightsail
+# Growth
+
+---
+
+# Larger instance size
+- Go to the instance
+- Snapshots
+- Create new instance from snapshot
+- Choose a new instance plan
+- Create
+
+---
+
+# Creating a Static IP and Attach It To An Instance In Amazon Lightsail
 
 The default dynamic public IP address attached to your Amazon Lightsail instance changes every time you stop and restart the instance. Create a static IP address and attach it to your instance to keep the public IP address from changing. Later, when you point a registered domain name to your instance, you don’t have to update your domain’s DNS records every time you stop and restart your instance.
 
@@ -613,6 +586,187 @@ https://lightsail.aws.amazon.com/ls/docs/en_us/articles/lightsail-how-to-set-up-
 - https://lightsail.aws.amazon.com/ls/docs/en_us/getting-started
 - https://lightsail.aws.amazon.com/ls/docs/en_us/overview
 - https://lightsail.aws.amazon.com/ls/docs/en_us/how-to
+
+---
+
+# A More Advanced Option
+
+---
+
+# Hosting WordPress On AWS
+
+![WordPress Reference Architecture](https://s3.amazonaws.com/ryanburnett.com/img/aws/wordpress-architecture.jpg)
+
+---
+
+# CloudFormation
+
+- AWS CloudFormation provides a common language for you to describe and provision all the infrastructure resources in your cloud environment.
+- CloudFormation allows you to use programming languages or a simple text file to model and provision, in an automated and secure manner, all the resources needed for your applications across all regions and accounts.
+- This gives you a single source of truth for your AWS resources.
+
+https://aws.amazon.com/cloudformation/
+
+---
+
+# YAML Templates
+
+This reference architecture provides best practices and a set of YAML CloudFormation templates for deploying WordPress on AWS.
+
+https://github.com/aws-samples/aws-refarch-wordpress/tree/master/templates
+
+---
+
+# New VPC
+
+Description: Reference Architecture to host WordPress on AWS - Creates New VPC
+
+https://github.com/aws-samples/aws-refarch-wordpress/blob/master/templates/aws-refarch-wordpress-01-newvpc.yaml
+
+---
+
+# Security Groups
+
+Description: Reference Architecture to host WordPress on AWS - Creates VPC security groups
+
+https://github.com/aws-samples/aws-refarch-wordpress/blob/master/templates/aws-refarch-wordpress-02-securitygroups.yaml
+
+---
+
+# Bastion Auto Scaling Group
+
+Description: Reference Architecture to host WordPress on AWS - Creates bastion (desired:0; min:0; max:1) Auto Scaling group
+
+https://github.com/aws-samples/aws-refarch-wordpress/blob/master/templates/aws-refarch-wordpress-03-bastion.yaml
+
+---
+
+# EFS Alarms
+
+Description: Reference Architecture to host WordPress on AWS - Creates EFS alarms
+
+https://github.com/aws-samples/aws-refarch-wordpress/blob/master/templates/aws-refarch-wordpress-03-efsalarms.yaml
+
+---
+
+# EFS File System
+
+Description: Reference Architecture to host WordPress on AWS - Creates EFS file system
+
+https://github.com/aws-samples/aws-refarch-wordpress/blob/master/templates/aws-refarch-wordpress-03-efsfilesystem.yaml
+
+---
+
+# ElastiCache
+
+Description: Reference Architecture to host WordPress on AWS - Creates ElastiCache cache cluster
+
+https://github.com/aws-samples/aws-refarch-wordpress/blob/master/templates/aws-refarch-wordpress-03-elasticache.yaml
+
+---
+
+# Application Load Balancer
+
+Description: Reference Architecture to host WordPress on AWS - Creates Application Load Balancer
+
+https://github.com/aws-samples/aws-refarch-wordpress/blob/master/templates/aws-refarch-wordpress-03-publicalb.yaml
+
+---
+
+# RDS
+
+Description: Reference Architecture to host WordPress on AWS - Creates RDS Aurora database cluster
+
+https://github.com/aws-samples/aws-refarch-wordpress/blob/master/templates/aws-refarch-wordpress-03-rds.yaml
+
+---
+
+# CloudFront
+
+Description: Reference Architecture to host WordPress on AWS - Creates CloudFront distribution (if selected)
+
+https://github.com/aws-samples/aws-refarch-wordpress/blob/master/templates/aws-refarch-wordpress-04-cloudfront.yaml
+
+---
+
+# WordPress Web Auto Scaling Group
+
+Description: Reference Architecture to host WordPress on AWS - Creates WordPress web Auto Scaling group
+
+https://github.com/aws-samples/aws-refarch-wordpress/blob/master/templates/aws-refarch-wordpress-04-web.yaml
+
+---
+
+# Route 53
+
+Description: Reference Architecture to host WordPress on AWS - Creates Route 53 record set (if selected)
+
+https://github.com/aws-samples/aws-refarch-wordpress/blob/master/templates/aws-refarch-wordpress-05-route53.yaml
+
+---
+
+# CloudWatch
+
+Description: Reference Architecture to host WordPress on AWS - Creates CloudWatch Dashboard
+
+https://github.com/aws-samples/aws-refarch-wordpress/blob/master/templates/aws-refarch-wordpress-06-dashboard.yaml
+
+---
+
+# Master Template
+
+Description: Stack to deploy a highly available, elastic, scalable WordPress environment. This master stack launches multiple nested stacks for different tiers. !! This can only be run in certain AWS Regions - 'us-east-1', 'us-east-2', 'us-west-2', 'eu-west-1'.
+
+https://github.com/aws-samples/aws-refarch-wordpress/blob/master/templates/aws-refarch-wordpress-master-newvpc.yaml
+
+https://s3.amazonaws.com/aws-refarch/wordpress/latest/templates/aws-refarch-wordpress-master-newvpc.yaml
+
+---
+
+# Demo
+
+- Prepare template
+- Specify template from S3
+- Stack details
+- Stack options
+- Review
+
+https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=WordPress&templateURL=https://s3.amazonaws.com/aws-refarch/wordpress/latest/templates/aws-refarch-wordpress-master-newvpc.yaml
+
+---
+
+# AWS Resources Created
+
+- Amazon Virtual Private Cloud (Amazon VPC)
+- Internet Gateway (IGW)
+- NAT Gateway (across all public subnets)
+- Amazon VPC subnets (public, private (data, web)) in all the Availability Zones (AZs) selected
+- Routing tables for public subnets - routing through IGW
+- Routing tables for private subnets - routing through NAT Gateway
+- Multiple VPC Security Groups
+- Bastion Auto Scaling Group (launching no instances) - in public subnets (public)
+- Amazon Relational Database Service (Amazon RDS) Aurora cluster - in private subnets (data)
+- Amazon Elastic File System (Amazon EFS) file system - with mount targets in private subnets (data) w/ optional dummy data to grow the file system to achieve higher levels of throughput and IOPS
+- File System Auto Scaling Group (launching 1 instance) - to add dummy data (it auto terminates by setting ASG desired count to 0)
+
+---
+
+# AWS Resources Created continued...
+
+- File System Auto Scaling Group (launching 1 instance) - to dynamically adjust warning and critical threshold values when the permitted throughput value changes (it auto terminates by setting ASG desired count to 0)
+- Amazon CloudWatch alarms to monitor Amazon EFS burst credit balance
+- Amazon ElastiCache cache cluster (optional) - in private subnets (data)
+- Amazon Elastic Load Balancing (Amazon ELB) Application Load Balancer (ALB) - in public subnets (public)
+- Web Auto Scaling Group (launching 2 instances) - in private subnets (web)
+- Amazon CloudFront distribution (optional)
+- Amazon Route53 DNS record set (optional)
+- Amazon CloudWatch dashboard
+
+---
+
+# More Information
+
+https://github.com/aws-samples/aws-refarch-wordpress
 
 ---
 
